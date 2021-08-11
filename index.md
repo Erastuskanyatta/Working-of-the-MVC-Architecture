@@ -45,27 +45,100 @@ It is used to link the view and the model.
 
 For example, the controller will be responsible for validating the user's input and then it will pass the user's input to the model to save the user.
 
-The diagram below show how the three components work together and how every component is connected to the other.
-<!-- ![MVC Architecture](/engineering-education/How the Model View Controller Architecture Works/visual.png)   -->
+The diagram below shows how the three components work together and how every component is connected to the other.
 
+![Model-View-Controller Architecture](/visual.png)
 ### How Model View Controller Architecture works
-The browser first send a request to the controller, the controller then interacts with the model to send and receive data from the darabase. 
+The browser first sends a request to the controller, the controller then interacts with the model to send and receive data from the database. 
 
-The controller then interacts with the view to generate the response. The view is concerned with displaying the data to the end-user but not with the data itself. It is a dynamic `HTML` file that provide data according to the controller's information
+The controller then interacts with the view to generate the response. The view is concerned with displaying the data to the end-user but not with the data itself. It is a dynamic `HTML` file that provides data according to the controller's information
 
 The View is concerned with how the information is presented, not with the end presentation. It will be a dynamic HTML file that renders data based on the information provided by the Controller.
 
-The view then send its presentation to the controller, the controller then sends the response to the browser which then displays the response to the end-user.
+The view then sends its presentation to the controller, the controller then sends the response to the browser which then displays the response to the end-user.
 
 
-**The view and the model are not not connected to each other directly. They interact with each other through the controller.**
+> **Note** Controllers are the glue that binds models, views, and other components together into a runnable application.
 
-This makes programing comprex application simple because the interface and the application logic are separated. 
+This makes programing complex applications easy because the interface and the application logic are separated. 
 
 To understand this concept better, let's take a look at the following example.
 <!-- ![MVC Architecture](/engineering-education/How the Model View Controller Architecture Works/visual.png)   -->
+Let's have a look at what is happening here. The user first inputs that they want a certain contact record, based on the contact id through the browser.
 
+The browser then sends a request to the controller that it wants a certain contact record. The controller then interacts with the model to get the contact record. The model will find the record from the database and then return it to the controller.
 
+```php
+/**
+     * Finds the Contact model based on its primary key value.
+     * If the model is not found, a 404 HTTP exception will be thrown.
+     * @param integer $id
+     * @return Contact the loaded model
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    protected function findModel($id)
+    {
+        if (($model = Contact::findOne($id)) !== null) {
+            return $model;
+        }
+
+        throw new NotFoundHttpException('The requested page does not exist.');
+    } 
+```
+
+The model will then look for the record from the database and then return it to the controller.
+
+```php
+/**
+     * {@inheritdoc}
+     */
+    public static function tableName()
+    {
+        return 'contact';
+    }  
+```
+
+Once the controller has the record, it will interact with the view to generate the response. The view will then present the record.
 ### Conclusion
+To 
 
 
+ 
+
+<!-- 
+    /**
+     * Displays a single Contact model.
+     * @param integer $id
+     * @return mixed
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    public function actionView($id)
+    {
+        return $this->render('view', [
+            'model' => $this->findModel($id),
+        ]);
+    } --> 
+
+<!-- 
+    <div class="contact-form">
+
+    <?php $form = ActiveForm::begin(); ?>
+
+  <?= $form->field($model, 'contact_id')->textInput() ?> 
+
+    <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'subject')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'body')->textInput(['maxlength' => true]) ?>
+
+
+    <div class="form-group">
+        <?= Html::submitButton('app'Save', ['class' => 'btn btn-success']) ?>
+    </div>
+
+    <?php ActiveForm::end(); ?>
+
+</div> -->
