@@ -98,15 +98,9 @@ The model will then look for the record from the database and then return it to 
     }  
 ```
 
-Once the controller has the record, it will interact with the view to generate the response. The view will then present the record.
-### Conclusion
-To 
-
-
- 
-
-<!-- 
-    /**
+Once the controller gets the record, it interacts with the view to generate the response. The view will then present the record.
+```php
+ /**
      * Displays a single Contact model.
      * @param integer $id
      * @return mixed
@@ -117,28 +111,39 @@ To
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
-    } --> 
-
-<!-- 
-    <div class="contact-form">
-
+    }
+```
+When the View receives the request, it renders the record and sends it to the Controller in `HTML`.
+```php
+ <div class="contact-form">
     <?php $form = ActiveForm::begin(); ?>
-
   <?= $form->field($model, 'contact_id')->textInput() ?> 
-
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
-
     <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
-
     <?= $form->field($model, 'subject')->textInput(['maxlength' => true]) ?>
-
     <?= $form->field($model, 'body')->textInput(['maxlength' => true]) ?>
-
-
     <div class="form-group">
         <?= Html::submitButton('app'Save', ['class' => 'btn btn-success']) ?>
     </div>
-
     <?php ActiveForm::end(); ?>
+</div> 
+```
+Finally, the Controller will take that HTML and return it to the user, which will then be displayed on the browser to the end-user.
 
-</div> -->
+### Benefits of Model-View-Controller
+
+- **Ease of Debugging**: Since the application is divided into components, it is easier to debug one component without interfering with the other components. For example, if you want to debug the backend, you can do it without having to debug the frontend.
+- **Ease of Use**: The user can focus on the task at hand and not have to think about how to use the application.
+- **Ease of Extensibility**: Since the application is divided into components, it is easier to add new components without interfering with the other components. For example, if you want to add a new backend, you can do it without having to modify the frontend.
+
+### Conclusio
+In this tutorial,
+
+
+
+
+
+
+
+
+
