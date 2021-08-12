@@ -63,7 +63,7 @@ The view then sends its presentation to the controller, the controller then send
 This makes programing complex applications easy because the interface and the application logic are separated. 
 
 To understand this concept better, let's take a look at the following example.
-<!-- ![MVC Architecture](/engineering-education/How the Model View Controller Architecture Works/visual.png)   -->
+![MVC Architecture](/mvc.png)  
 Let's have a look at what is happening here. The user first inputs that they want a certain contact record, based on the contact id through the browser.
 
 The browser then sends a request to the controller that it wants a certain contact record. The controller then interacts with the model to get the contact record. The model will find the record from the database and then return it to the controller.
@@ -136,8 +136,11 @@ Finally, the Controller will take that HTML and return it to the user, which wil
 - **Ease of Use**: The user can focus on the task at hand and not have to think about how to use the application.
 - **Ease of Extensibility**: Since the application is divided into components, it is easier to add new components without interfering with the other components. For example, if you want to add a new backend, you can do it without having to modify the frontend.
 
-### Conclusio
-In this tutorial,
+### Conclusion
+The most interesting thing about MVC is that it is not a single pattern. It is a set of patterns that are used together to build a complex application.
+
+
+<!-- When you want to run a new web development framework, you will find this pattern to be the most important.  -->
 
 
 
